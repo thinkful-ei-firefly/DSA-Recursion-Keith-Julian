@@ -66,4 +66,60 @@ function fibonacci(num){
   }
 }
 
-console.log(fibonacci(13))
+//console.log(fibonacci(13))
+
+function factorial(num){
+  if (num === 1)
+    return 1
+  else 
+    return num * factorial(num - 1)
+}
+
+//console.log(factorial(5))
+
+let mySmallMaze = [
+  [' ', ' ', ' '],
+  [' ', '*', ' '],
+  [' ', ' ', 'e']
+];
+
+let maze = [
+  [' ', ' ', ' ', '*', ' ', ' ', ' '],
+  ['*', '*', ' ', '*', ' ', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  [' ', '*', '*', '*', '*', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+
+function mazeSolve(maze, current){
+  let x = current[0]
+  let y = current[1]
+  console.log(`${x}:${y}`)
+  if (x < 0 || x >= 3 || y < 0 || y >= 3){
+    return false
+  }
+  if (maze[x][y] === '*'){
+    return false
+  }
+  if (maze[x][y] === 'e'){
+    return ': exit'
+  } else {
+    maze[x][y] = '*'
+    if (y-1 <= 5 && y-1 >= 0 && maze[x][y-1]!== '*'){
+      return 'U' + mazeSolve(maze, [x, y-1])
+    }
+    if (x+1 <= 7 && x+1 >= 0 && maze[x+1][y]!== '*'){
+      return 'R' +mazeSolve(maze, [x+1, y])
+    }
+    if (y+1 <= 5 && y+1 >= 0 && maze[x][y+1]!== '*'){
+      return 'D' + mazeSolve(maze, [x, y+1])
+    }
+    if (x-1 <= 7 && x-1 >= 0 && maze[x-1][y]!== '*'){
+      return 'L' + mazeSolve(maze, [x-1, y])
+    }  
+  }
+}
+
+console.log(mazeSolve(maze, [0,0]))
+
+ 
