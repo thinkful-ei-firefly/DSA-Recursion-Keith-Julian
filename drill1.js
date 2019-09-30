@@ -95,31 +95,50 @@ function mazeSolve(maze, current){
   let x = current[0]
   let y = current[1]
   console.log(`${x}:${y}`)
-  if (x < 0 || x >= 3 || y < 0 || y >= 3){
-    return false
-  }
-  if (maze[x][y] === '*'){
-    return false
-  }
-  if (maze[x][y] === 'e'){
+  if (maze[y][x] === 'e'){
     return ': exit'
   } else {
-    maze[x][y] = '*'
-    if (y-1 <= 5 && y-1 >= 0 && maze[x][y-1]!== '*'){
+    maze[y][x] = '*'
+    if (y-1 >= 0 && maze[y-1][x]!== '*'){
+      console.log('up')
       return 'U' + mazeSolve(maze, [x, y-1])
     }
-    if (x+1 <= 7 && x+1 >= 0 && maze[x+1][y]!== '*'){
+    if (x+1 <= 6 && maze[y][x+1]!== '*'){
+      console.log('right')
       return 'R' +mazeSolve(maze, [x+1, y])
     }
-    if (y+1 <= 5 && y+1 >= 0 && maze[x][y+1]!== '*'){
+    if (y+1 <= 4 && maze[y+1][x]!== '*'){
+      console.log('down')
       return 'D' + mazeSolve(maze, [x, y+1])
     }
-    if (x-1 <= 7 && x-1 >= 0 && maze[x-1][y]!== '*'){
+    if (x-1 >= 0 && maze[y][x-1]!== '*'){
+      console.log('left')
       return 'L' + mazeSolve(maze, [x-1, y])
     }  
   }
 }
 
-console.log(mazeSolve(maze, [0,0]))
+//console.log(mazeSolve(maze, [0,0])) //x, y
 
+function mazeSolveAll(maze, current, path){
+  let mapCopy = maze.map(x => [...x])
+  let x = current[0]
+  let y = current[1]
+  if (x < 0 || y < 0 || x >= mapCopy[0].length || y >= mapCopy.length || maze[y][x] === '*'){
+    return false
+  }
+  if (maze[y][x] === 'e'){
+    console.log(path)
+    return true
+  }
+  if (maze[y][x] === ' ') {
+    mapCopy[y][x] = '*' 
+    
+    mazeSolveAll(mapCopy, [x, y-1], path + 'U')
+    mazeSolveAll(mapCopy, [x+1, y], path + 'R')
+    mazeSolveAll(mapCopy, [x, y+1], path + 'D')
+    mazeSolveAll(mapCopy, [x-1, y], path + 'L')  
+  }
+}
  
+mazeSolveAll(maze, [0,0], '')
