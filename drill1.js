@@ -27,4 +27,30 @@ function reverseString(input){
   }
 }
 
-console.log(reverseString('pineapple'))
+// console.log(reverseString('pineapple'))
+
+
+function nthTriangular(num){
+  if (num === 1){
+    return 1;
+  } else {
+    return num + nthTriangular(num - 1)
+  }
+}
+
+// console.log(nthTriangular(4))
+
+function stringSplitter(string, seperator){
+  if (string = ''){
+    return '';
+  }else{
+    let nString = string.slice[0];
+    if (nString === seperator){
+      return stringSplitter(string.slice(0, -1))
+    } else {
+      return nString + stringSplitter(string.slice(0, -1))
+    }
+  }
+}
+
+console.log(stringSplitter('20/20/2020', '/'))
