@@ -141,4 +141,99 @@ function mazeSolveAll(maze, current, path){
   }
 }
  
-mazeSolveAll(maze, [0,0], '')
+// mazeSolveAll(maze, [0,0], '')
+
+
+function anagrams(string){
+  let wordArray = string.split('');
+  if (wordArray.length === 1){
+
+  }else{
+    // for (let i=0; i < wordArray.length; i++){
+    //   const prefix = string[i]
+    //   const remaining = st
+    // }
+  }
+
+}
+
+// anagrams('hello')
+
+let heiarchy = {
+  Zuckerber: {
+    Schroepfer: {
+      Bosworth: {
+        Steve: "Steve",
+        Kyle: "kyle",
+        Andra: "Andra"
+      },
+      Zhao: {
+        Richie: "Richie",
+        Sofia: "Sofia",
+        Jen: "Jen"
+      }
+    },
+    Schrage: {
+      VanDyck: {
+        Sabrina: "Sabrina",
+        Michelle: "Michelle",
+        Josh: "Josh"
+      },
+      Swain: {
+        Blanch: "Blanch",
+        Tom: "Tom",
+        Joe: "Joe"
+      }
+    },
+    Sandberg: {
+      Goler: {
+        Eddie: "Eddie",
+        Julie: "Julie",
+        Annie: "Annie"
+      },
+      Hernandez: {
+        Rowi: "Rowi",
+        Inga: "Inga",
+        Morgan: "Morgan"
+      },
+      Moissinac: {
+        Amy: "Amy",
+        Chuck: "Chuck",
+        Vinni: "Vinni"
+      },
+      Kelley: {
+        Eric: "Eric",
+        Ana: "Ana",
+        Wes: "Wes"
+      } 
+    }
+  }
+}
+
+function orgChart(heiarchy, indent=''){
+  // let indent = '  ';
+
+  if (typeof heiarchy === 'object') { 
+    for (const key in heiarchy) { 
+      console.log(indent + key)
+      orgChart(heiarchy[key], indent+'    '); } 
+    } else { 
+      // console.log(heiarchy); 
+    }
+  }
+// orgChart(heiarchy)
+
+
+function isBinary(n){
+  if (n <= 1){
+    return n.toString();
+  }
+  const firstBit = n & 1;
+  const binaryFirstBit = isBinary(firstBit);
+  const restOfBits = n >> 1;
+  const binaryOfRestOfBits = isBinary(restOfBits);
+  return binaryFirstBit + binaryOfRestOfBits;
+}
+
+console.log(isBinary(3));
+console.log(isBinary(25));
