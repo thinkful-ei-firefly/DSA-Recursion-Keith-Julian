@@ -41,14 +41,14 @@ function nthTriangular(num){
 // console.log(nthTriangular(4))
 
 function stringSplitter(string, seperator){
-  if (string = ''){
+  if (string === ''){
     return '';
   }else{
-    let nString = string.slice[0];
-    if (nString === seperator){
-      return stringSplitter(string.slice(0, -1))
+    let nString = string.slice(0, 1);
+    if (nString.toString() === seperator){
+      return stringSplitter(string.slice(1), seperator)
     } else {
-      return nString + stringSplitter(string.slice(0, -1))
+      return nString + stringSplitter(string.slice(1), seperator)
     }
   }
 }
