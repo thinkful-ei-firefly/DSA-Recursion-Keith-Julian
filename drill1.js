@@ -53,4 +53,17 @@ function stringSplitter(string, seperator){
   }
 }
 
-console.log(stringSplitter('20/20/2020', '/'))
+// console.log(stringSplitter('20/20/2020', '/'))
+
+function fibonacci(num){
+  // console.log(num)
+  if (num <= 0){
+    return 'num must be greater than 0'
+  }else if (num === 1 || num === 2){
+    return 1
+  }else{
+    return fibonacci(num - 1) + fibonacci(num - 2)
+  }
+}
+
+console.log(fibonacci(13))
